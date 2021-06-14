@@ -1,6 +1,6 @@
 # (APPENDIX) 附录 有关数学推导{-}
 
-# 二分变量比例检验的数学原理
+# 二分变量比例检验的数学原理 {#Chp11}
 
 ```{r,include=FALSE}
 library(ggplot2)
