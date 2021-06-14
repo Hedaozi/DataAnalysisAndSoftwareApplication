@@ -1,0 +1,6 @@
+book_filename: "《数据分析与软件应用》考试资料"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: ""
+before_chapter_script: ["Set.R"]

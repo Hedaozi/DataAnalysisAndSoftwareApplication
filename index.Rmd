@@ -1,0 +1,14 @@
+--- 
+title: "《数据分析与软件应用》考试资料"
+author: "何凌锋"
+site: bookdown::bookdown_site
+documentclass: book
+biblio-style: apalike
+github-repo: Hedaozi/DataAnalysisAndSoftwareApplication
+---
+
+# 说明 {-}
+
+这是我于2019年秋季学期修习《数据分析与软件应用》课程时的课程总结整理而成的小册子，包括了基本统计的公式推导和对应的Stata软件实现，或许有助于初学者熟悉相关内容。
+
+本书完成于2020年1月12日，原稿为docx文档。2021年6月14日使用bookdown重新排版为html文件。由于bookdown中的表格边框样式选择较少，为尽量保留Stata输出结果与本书间所呈现的内容一致，以方便读者参考，本书将原docx文件中的表格转为图片后插入本书。

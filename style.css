@@ -1,0 +1,35 @@
+p {
+  font-family: 'Times New Roman', 宋体;
+  text-indent:2em;
+}
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p.author {
+  font-family: 'Times New Roman', 宋体;
+  text-indent:0em;
+}
+p.date {
+  font-family: 'Times New Roman', 宋体;
+  text-indent:0em;
+}
+b, a, li, input {
+  font-family: 'Times New Roman', 宋体;
+}
+ol{
+  font-family: 'Times New Roman', 宋体;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Times New Roman', 宋体;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}

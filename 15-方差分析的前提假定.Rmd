@@ -1,0 +1,45 @@
+# 方差分析的前提假定
+
+a) $\sigma_1^2=\sigma_2^2=...=\sigma_m^2$；b) $n_1=n_2=...=n_m$
+
+方差分析的统计量
+
+$$F=\frac{MSB}{MSW}\sim F(m-1;n-m)$$
+
+其中，
+
+$$MSB=\frac{SSB}{m-1},SSB=\sum_{i=1}^mn_i(\overline{y_i}-\overline y)^2$$
+$$MSW=\frac{SSW}{n-m},SSW=\sum_{i=1}^m\sum^{n_i}_{j=1}(y_{ij}-\overline {y_i})^2$$
+
+我们知道，对满足正态分布的总体而言，修正的样本方差$S_d^2$满足：
+
+$$\frac{(n-1)S_d^2}{\sigma^2}\sim χ^2 (n-1),S_d^2=\frac{1}{n-1}\sum_{i=1}^n(y_i-\overline y)^2$$
+
+观察$SSB$和$SSW$：
+
+$$SSB=\sum_{i=1}^mn_i(\overline{y_i}-\overline y)^2=\sum_{i=1}^m\frac{\sigma_i^2 (\overline{y_i}-\overline y)^2}{\sigma_i^2⁄n_i }=\sum_{i=1}^m\sigma_i^2χ_{(1-\frac{1}{m})}^2$$
+
+$$SSW=\sum_{i=1}^m\sum^{n_i}_{j=1}(y_{ij}-\overline {y_i})^2=\sum_{i=1}^m\sigma_i^2[\sum_{j=1}^{n_i}\frac{(y_{ij}-\overline{y_i})^2}{\sigma_i^2}]=\sum_{i=1}^m\sigma_i^2\chi_{(n_i-1)}^2$$
+由$\chi^2$的可加性可知：
+
+$$SSB=\sum_{i=1}^m\sigma_i^2χ_{(1-\frac{1}{m})}^2=\chi_{\sum_{i=1}^m\sigma_i^2(1-\frac{1}{m})}^2$$
+
+$$SSW=\sum_{i=1}^m\sigma_i^2\chi_{(n_i-1)}^2=\chi_{\sum_{i=1}^m\sigma_i^2 (n_i-1)}^2$$
+由于
+
+$$n\sigma^2=\sum_{i=1}^mn_i\sigma_i^2=\frac{n}{m}\sum_{i=1}^m\sigma_i^2\rightarrow\sum_{i=1}^m\sigma_i^2=m\sigma^2$$
+
+因此
+
+$$SSB=\chi_{\sum_{i=1}^m\sigma_i^2(1-\frac{1}{m})}^2=\chi_{m\sigma^2 (1-\frac{1}{m})}^2=\sigma^2\chi_{(m-1)}^2$$
+当$n_1=n_2=...=n_m=n⁄m$时
+
+$$SSW=\chi_{\sum_{i=1}^m\sigma_i^2 (n_i-1)}^2=χ_{m\sigma^2 (\frac{n}{m-1})}^2=\sigma^2\chi_{(n-m)}^2$$
+
+或当$\sigma_1^2=\sigma_2^2=...=\sigma_m^2=\sigma^2$时
+
+$$SSW=\chi_{\sum_{i=1}^m\sigma_i^2 (n_i-1)}^2=χ_{\sigma^2 \sum_{i=1}^m(n_i-1)}^2=\sigma^2\chi_{(n-m)}^2$$
+
+从而
+
+$$F=\frac{MSB}{MSW}=\frac{SSB⁄(m-1)}{SSW⁄(n-m)}=\frac{\chi_{(m-1)}^2/(m-1)}{\chi_{(n-m)}^2)⁄(n-m)}\sim F(m-1;n-m)$$

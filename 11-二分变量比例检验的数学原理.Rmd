@@ -1,0 +1,96 @@
+# (APPENDIX) 附录 有关数学推导{-}
+
+# 二分变量比例检验的数学原理
+
+```{r,include=FALSE}
+library(ggplot2)
+
+# 调用系统字体
+windowsFonts(
+  CM = windowsFont("Cambria Math"),
+  TNR =windowsFont("Times New Roman")
+)
+
+# 定义绘图函数；通过调用函数，可以以预设的样式绘图
+myplot <- function(xt = "", yt = "", pt = "", ct = ""){
+  pl <- ggplot() + labs(x = xt, y = yt, title = pt, caption = ct) + theme_bw() +
+    theme(plot.caption = element_text(family = "CM"),
+          title = element_text(family = "CM"),
+          text = element_text(family = "CM"))
+  return(pl)
+}
+
+# 定义B(1,p)的分布函数
+cdf_b1p <- function(x, p){
+  l <- length(x)
+  y <- x
+  for (i in 1:l){
+    if (x[i] < 0) y[i] <- 0
+    else{
+      if (x[i] < 1) y[i] <- 1 - p
+      else y[i] <- 1
+    }
+  }
+  d <- data.frame(x = x, y = y)
+  return(d)
+}
+
+# 定义N(p,√(p(1-p)⁄n))的概率密度函数和分布函数
+pdf_b1p_p <- function(x, p, n){
+  y <- dnorm(x, p, sqrt(p*(1-p)/n))
+  d <- data.frame(x = x, y = y)
+  return(d)
+}
+
+cdf_b1p_p <- function(x, p, n){
+  y <- pnorm(x, p, sqrt(p*(1-p)/n))
+  d <- data.frame(x = x, y = y)
+  return(d)
+}
+
+p <- 0.1 
+n <- 200
+```
+
+任一二分变量的单个取值可以看作是单次伯努利试验的结果。为方便计算与表示，我们规定二分变量的取值为0和1，其中取到1的概率为$p$。那么，二分变量单个取值对应的单次伯努利试验可表为$B(1,p)$，即总体$X\sim B(1,p)$。
+
+```{r,out.width='100%',fig.cap='$B(1,p)$的分布函数'}
+# B(1,p)分布函数图像
+x <- seq(-4, 4, 0.0005)
+d <- cdf_b1p(x, p)
+myplot(xt = "x", yt = "Pr(X≤x)") + 
+  geom_line(data = d, aes(x, y), color = "red")
+```
+
+二分变量比例的检验统计量可以借助中心极限定律构造。总体独立同分布的中心极限定理：
+
+已知一列随机变量$X_1,X_2,…,X_n$相互独立且同服从于某一期望为$EX$，方差为$DX$的分布，那么有：
+
+$$\lim_{n\to\infty}\frac{\sum_{i=1}^nX_i-nEX}{\sqrt{nDX}}=\lim_{n\to\infty}\frac{\sqrt n(\overline X-EX)}{\sqrt{DX}}\sim N(0,1)$$
+
+我们已经知道，总体$X~B(1,p)$，代入上式有：
+
+$$\lim_{n\to\infty}\frac{\sqrt n(\hat p-p)}{\sqrt{p(1-p)}}\sim N(0,1)$$
+或：
+
+$$\lim_{n\to\infty}\hat p\sim N\left(p,\frac{p(1-p)}{n}\right)$$
+
+因此，我们构造检验统计量
+
+$$P_0=\frac{\sqrt n(\hat p-p)}{\sqrt{p(1-p)}}$$
+
+```{r,out.width='100%',fig.cap='$N(p,{p(1-p)/n})$的概率密度函数'}
+x <- seq(p - 0.15, p + 0.15, 0.0001)
+d <- pdf_b1p_p(x, p, n)
+myplot(xt = "x", yt = "Density") + 
+  geom_line(data = d, aes(x, y), color = "red")
+```
+
+```{r,out.width='100%',fig.cap='$N(p,{p(1-p)/n})$的分布函数'}
+x <- seq(p - 0.15, p + 0.15, 0.0001)
+d <- cdf_b1p_p(x, p, n)
+myplot(xt = "x", yt = "Pr(X≤x)") + 
+  geom_line(data = d, aes(x, y), color = "red")
+```
+
+从纯粹数学的角度，$P_0$依分布收敛于$N(0,1)$。从统计实践的角度，只要样本量$n$被认为足够大，即统计量实际的分布与其收敛于的理想分布之间的误差被允许接受时，我们就可以认为$P_0\sim N(0,1)$。据说，当$n≥50$时，$n$就已经足够大了。

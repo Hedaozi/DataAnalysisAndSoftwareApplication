@@ -1,0 +1,21 @@
+# 独立样本均值差的检验统计量
+
+前提假设：正态总体；方差齐性
+
+记$X_A\sim N(\mu_A,\sigma_A^2)$，$X_B\sim N(\mu_B,\sigma_B^2)$。由正态分布可加性可知：$\overline{X_A}\sim N(\mu_A,\sigma_A^2⁄n_A)$，$\overline{X_B}\sim N(\mu_B,\sigma_B^2⁄n_B )$，$\overline{X_A}-\overline{X_B}\sim N(\mu_A-\mu_B,\sigma_A^2⁄n_A+\sigma_B^2⁄n_B)$。
+
+特别地，在原假设下，有：$\overline{X_A}-\overline{X_B}\sim N(0,\sigma_A^2⁄n_A+\sigma_B^2⁄n_B)$，即：
+
+$$\frac{\overline {X_A}-\overline {X_B}}{\sqrt{\sigma_A^2⁄n_A +\sigma_B^2⁄n_B }}\sim N(0,1)$$
+
+若二总体满足：$\sigma_A^2=\sigma_B^2=\sigma^2$，则
+
+$$\frac{(n_A-1) S_A^2}{\sigma^2} \sim χ^2 (n_A-1),\frac{(n_B-1) S_B^2}{\sigma^2} \sim χ^2 (n_B-1)$$
+
+由$χ^2$分布的可加性：
+
+$$\frac{(n_A-1)S_A^2+(n_B-1)S_B^2}{\sigma^2} \sim χ^2 (n_A+n_B-2)$$
+
+进而可以构造检验统计量： 
+
+$$T=\frac{\overline{X_A}-\overline{X_B}}{\sqrt{(\frac{1}{n_A}+\frac{1}{n_B})\times\frac{(n_A-1) S_A^2+(n_B-1)S_B^2)}{n_A+n_B-2}}}\sim t(n_A+n_B-2)$$

@@ -1,0 +1,61 @@
+# 列联表检验的$\chi^2$与$V$
+
+记事件$A$为
+
+$$A=\{X=x,Y=y\}$$
+
+记随机变量$Z$为
+
+$$W=\left\{
+\begin{aligned}
+1, &  & A \\
+0, &  & \overline{A}
+\end{aligned}
+\right.$$
+
+
+可知，$W\sim B(1,p)$，其中$p=P\{X=x,Y=y\}$。在二变量独立时，有$p=P\{X=x\}P\{Y=y\}$。
+
+列联表的格值
+
+$$n_{ij}=\sum_{i=1}^nW_i$$
+由中心极限定律可知：当$n$比较大时，近似有$n_{ij}\sim N(\mu_n,\sigma_n^2)$，其中，
+
+$$\mu_n=n\mu_Z=np=E_{ij}$$
+$$σ_n^2=nσ_Z^2=npq=E_{ij}q$$
+
+因此，当$n$比较大时：
+
+$$\frac{n_{ij}-E_{ij}}{\sqrt{E_{ij}q}}\sim N(0,1)$$
+当$p$不是很大时，上式可约为：
+
+$$Z_{ij}=\frac{n_{ij}-E_{ij}}{\sqrt{E_{ij}}}\sim N(0,1)$$
+
+进而，由于$Z_{ij}$间相互不独立，自由度$\nu=(r-1)(c-1)$，因此
+
+$$\chi^2=\sum_{i=1}^r\sum_{j=1}^c\frac{(n_{ij}-E_{ij})^2}{E_{ij}}\sim \chi^2 (\nu),\nu=(r-1)(c-1)$$
+
+统计量$V$可以描述两个变量的相关系数的强度：
+
+$$V=\sqrt{\frac{\chi^2}{n(k-1)}},k=min(r,c)$$
+
+让$\chi^2$除以$n$是为了消除样本量增大的影响，而除以$(k-1)$是为了将$V$的取值控制在[0,1]之间。下证：
+
+当变量完全不相关时：显然有$n_{ij}=E_{ij}$，从而有$\chi^2=0$，$V=0$。
+
+当变量完全相关时：记取值较少的变量为$X$，取值较多的变量为$Y$，取定$X$后，定然有唯一确定的$Y$的取值，可以将这种关系表为函数关系$Y=F(X)$。此时，列联表其实可以表为一个$k\times k$表，$X$和$Y$仅有$k$个取值，且一一对应。当$n_{ij}=0$时，
+
+$$\frac{(n_{ij}-E_{ij})^2}{E_{ij}}=E_{ij}=\frac{n_{i*}n_{i*}}{n}$$
+
+$$\sum_{i=1}^k\sum_{j=1}^k\frac{(n_{ij}-E_{ij})^2}{E_{ij}} =\sum_{i=1}^k\sum_{j=1}^k\frac{n_{i*}n_{*j}}{n}(n_{ij}=0)$$
+
+当$n_{ij}≠0$时，$n_{ij}=n_{i*}=n_{*j}$
+
+$$\frac{(n_{ij}-E_{ij})^2}{E_{ij}}=\frac{n_{ij}^2}{E_{ij}} -2\times n_{ij}+E_{ij}=n-2\times n_{i*}+\frac{n_{i*}n_{i*}}{n}$$
+$$\sum_{i=1}^k\frac{(n_{ij}-E_{ij})^2}{E_{ij}}=\sum_{i=1}^k(n-2×n_{i*}+\frac{n_{i*}n_{i*}}{n})=kn-2n+\sum_{i=1}^k\sum_{j=1}^k\frac{n_{i*}n_{*j}}{n} (n_{ij}≠0)$$
+
+将两式相加，可得：
+
+$$\chi^2=\sum_{i=1}^k\sum_{j=1}^k\frac{n_{i*}n_{*j}}{n}-(k-2)n=\sum_{i=1}^k\sum_{j=1}^kE_{ij}-(k-2)n=n-(k-2)n=(k-1)n$$
+
+$$V=\sqrt{\frac{\chi^2}{n(k-1)}}=1$$
