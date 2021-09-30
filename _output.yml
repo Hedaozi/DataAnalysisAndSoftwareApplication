@@ -1,7 +1,7 @@
 bookdown::bs4_book:
   css: style.css
   theme:
-    primary: "#000000"
+    primary: "#A20025"
   repo: https://github.com/Hedaozi/DataAnalysisAndSoftwareApplication
 
 bookdown::gitbook:
