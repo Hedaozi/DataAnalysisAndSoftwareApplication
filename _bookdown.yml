@@ -2,5 +2,5 @@ book_filename: "data-analysis-and-software-application"
 delete_merged_file: true
 language:
   ui:
-    chapter_name: ""
+    chapter_name: ["第", "章"]
 before_chapter_script: ["Set.R"]
